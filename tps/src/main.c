@@ -9,7 +9,6 @@
 #include <stdbool.h>
 
 int main() {
-
     DIR *dir_ptr;
     struct dirent *read_dir;
 
@@ -24,7 +23,6 @@ int main() {
     char *str2 = "CMD";
 
     printf("%5s %s\n", str1, str2);
-
     //keep reading sub-dir PID & name until reached end of main dir
     while((read_dir = readdir(dir_ptr)) != NULL){
         char* pid = read_dir -> d_name;
@@ -56,8 +54,6 @@ int main() {
             if (read_file == -1) {
                 perror("Can't read the file\n");
             }
-
-            //printf("%s", buffer);
 
             bool start_collecting = false;
             char filename[50];
@@ -98,11 +94,4 @@ int main() {
 
     return 0;
 }
-
-
-
-// step 1: open & read proc/ dir and its contents (should include all active dir)
-// step 2: read PID if has number, then read the file name
-// step 3: if i fail to open a status file (to read the name) process
-//no longer exists and i need to just not print anything (empty perror?)
 
